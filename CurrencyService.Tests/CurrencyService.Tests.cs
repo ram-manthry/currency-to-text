@@ -32,13 +32,15 @@ namespace CurrencyService.Tests
         [TestCase(20, "Twenty")]
         [TestCase(50, "Fifty")]
         [TestCase(90, "Ninety")]
-        public void When_Two_Digits_Multiples_Of_10_Then_Return_From_Dictionary(int input, string expected) {
+        [TestCase(100, "Hundred")]
+        [TestCase(1000, "Thousand")]
+        public void When_Divisible_By_10_Then_Lookup_From_Dictionary(int input, string expected) {
             var actual = _currencyService.ConvertToText(input);
             actual.Should().Be(expected);
         }
 
         [TestCase(21, "Twenty One")]
-        public void When_Two_Digits_Above_20_And_Not_10_Multiples(int input, string expected) {
+        public void When_Two_Digits_Above_20_And_Not_Divisible_By_10(int input, string expected) {
             var actual = _currencyService.ConvertToText(input);
             actual.Should().Be(expected);
         }
