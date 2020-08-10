@@ -14,8 +14,8 @@ namespace CurrencyService
             }
 
             var isDivisibleBy10 = currency % 10 == 0;
-            if (isDivisibleBy10 && CurrencyLookup.TenDivisibleTexts.ContainsKey(wholeNumberPart)) {
-                text = CurrencyLookup.TenDivisibleTexts[wholeNumberPart];
+            if (isDivisibleBy10 && CurrencyLookup.TenMultipleTexts.ContainsKey(wholeNumberPart)) {
+                text = CurrencyLookup.TenMultipleTexts[wholeNumberPart];
             }
 
             return text;
