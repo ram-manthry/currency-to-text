@@ -54,7 +54,7 @@ namespace CurrencyService.Tests
         }
 
         [TestCase(101.123, "one hundred and one dollars and twelve cents")]
-        [TestCase(123.45, "one hundred and twenty three dollars fourty and five cents")]
+        [TestCase(123.45, "one hundred and twenty three dollars and fourty five cents")]
         [TestCase(0.12, "twelve cents")]
         [TestCase(10.55, "ten dollars and fifty five cents")]
         [TestCase(120, "one hundred and twenty dollars")]

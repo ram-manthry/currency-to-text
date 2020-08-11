@@ -11,11 +11,11 @@ namespace CurrencyService
             var fractionalPart = amount.FractionalPart();
 
             if (wholeNumberPart > 0 || fractionalPart == 0) {
-                text += TranslateToEnglish(wholeNumberPart, "dollars");
+                text = TranslateToEnglish(wholeNumberPart, "dollars");
             }
         
             if (fractionalPart > 0) {
-                text += " and " + TranslateToEnglish(fractionalPart, "dollars");
+                text += Conjuctor(text, " and ") + TranslateToEnglish(fractionalPart, "cents");
             }
             
             return text;
