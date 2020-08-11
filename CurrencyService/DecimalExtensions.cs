@@ -6,12 +6,12 @@ public static class DecimalExtensions
             return (int)Math.Truncate(number);
         }
 
-        public static int ReminderDigits(this decimal number)
+        public static int FractionalPart(this decimal number)
         {
-            var decimalPart = number - Math.Truncate(number);
-            if (decimalPart == 0) {
+            var fractionalPart = number - Math.Truncate(number);
+            if (fractionalPart == 0) {
                 return 0;
             }
-            return int.Parse(decimalPart.ToString().Substring(2, 2));
+            return int.Parse(fractionalPart.ToString().Substring(2, 2));
         }
     }

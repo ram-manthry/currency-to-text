@@ -6,10 +6,19 @@ namespace CurrencyService
     {
         public string TranslateToEnglish(decimal amount) {
             var text = string.Empty;
-            var dollars = TranslateToEnglish(amount.WholeNumberPart(), "dollars");
-            var reminderDigits = amount.ReminderDigits();
-            var cents = reminderDigits > 0 ? " " + TranslateToEnglish(reminderDigits, "cents") : string.Empty;
-            return dollars + cents;
+
+            var wholeNumberPart = amount.WholeNumberPart();
+            var fractionalPart = amount.FractionalPart();
+
+            if (wholeNumberPart > 0) {
+                text += TranslateToEnglish(wholeNumberPart, "dollars");
+            }
+        
+            if (fractionalPart > 0) {
+                text += " and " + TranslateToEnglish(fractionalPart, "dollars");
+            }
+            
+            return text;
         }
 
         private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
