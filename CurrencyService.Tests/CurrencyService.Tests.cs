@@ -65,6 +65,10 @@ namespace CurrencyService.Tests
         }
 
         [TestCase(1000)]
+        [TestCase(-1)]
+        [TestCase(1001)]
+        [TestCase(1000.01)]
+        [TestCase(-0.01)]
         public void When_Amount_Not_Between_0_And_1000_Throw_Argument_Out_Of_Range_Exception(decimal input) {
             Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>().And.Message.EqualTo($"Amount should be between 0 and 1000 : {input} (Parameter 'amount')"), 
                 () => _currencyService.TranslateToEnglish(input));
