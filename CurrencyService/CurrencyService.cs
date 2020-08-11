@@ -10,7 +10,7 @@ namespace CurrencyService
             var wholeNumberPart = amount.WholeNumberPart();
             var fractionalPart = amount.FractionalPart();
 
-            if (wholeNumberPart > 0) {
+            if (wholeNumberPart > 0 || fractionalPart == 0) {
                 text += TranslateToEnglish(wholeNumberPart, "dollars");
             }
         
