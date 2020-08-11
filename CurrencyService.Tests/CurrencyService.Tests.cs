@@ -32,8 +32,7 @@ namespace CurrencyService.Tests
         [TestCase(20, "Twenty")]
         [TestCase(50, "Fifty")]
         [TestCase(90, "Ninety")]
-        [TestCase(100, "Hundred")]
-        [TestCase(1000, "Thousand")]
+        [TestCase(100, "One Hundred")]
         public void When_10_Multiple_Then_Lookup_From_Dictionary(int input, string expected) {
             var actual = _currencyService.ConvertToText(input);
             actual.Should().Be(expected);
