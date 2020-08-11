@@ -12,35 +12,44 @@ namespace CurrencyService.Tests
             _currencyService = new CurrencyService();
         }
 
-        [TestCase(0, "Zero")]
-        [TestCase(1, "One")]
-        [TestCase(9, "Nine")]
+        [TestCase(0, "Zero Dollars")]
+        [TestCase(1, "One Dollars")]
+        [TestCase(9, "Nine Dollars")]
         public void When_Single_Digit_Then_Return_From_Dictionary(int input, string expected)
         {
-            var actual = _currencyService.ConvertToText(input);
+            var actual = _currencyService.TranslateToEnglish(input);
             actual.Should().Be(expected);
         }
 
-        [TestCase(11, "Eleven")]
-        [TestCase(19, "Nineteen")]
+        [TestCase(11, "Eleven Dollars")]
+        [TestCase(19, "Nineteen Dollars")]
         public void When_Two_Digits_Below_20_Then_Return_From_Dictionary(int input, string expected) {
-            var actual = _currencyService.ConvertToText(input);
+            var actual = _currencyService.TranslateToEnglish(input);
             actual.Should().Be(expected);
         }
 
-        [TestCase(10, "Ten")]
-        [TestCase(20, "Twenty")]
-        [TestCase(50, "Fifty")]
-        [TestCase(90, "Ninety")]
-        [TestCase(100, "One Hundred")]
-        public void When_10_Multiple_Then_Lookup_From_Dictionary(int input, string expected) {
-            var actual = _currencyService.ConvertToText(input);
+        [TestCase(10, "Ten Dollars")]
+        [TestCase(20, "Twenty Dollars")]
+        [TestCase(50, "Fifty Dollars")]
+        [TestCase(90, "Ninety Dollars")]
+        [TestCase(100, "One Hundred Dollars")]
+        public void When_10_Multiple_Then_Return_From_Dictionary(int input, string expected) {
+            var actual = _currencyService.TranslateToEnglish(input);
             actual.Should().Be(expected);
         }
 
-        [TestCase(21, "Twenty One")]
-        public void When_Two_Digits_Above_20_And_Not_10_Multiple(int input, string expected) {
-            var actual = _currencyService.ConvertToText(input);
+        [TestCase(21, "Twenty One Dollars")]
+        [TestCase(99, "Ninety Nine Dollars")]
+        public void When_Two_Digits_Above_20_And_Not_10_Multiple_Then_Show_Two_Words(int input, string expected) {
+            var actual = _currencyService.TranslateToEnglish(input);
+            actual.Should().Be(expected);
+        }
+
+        [TestCase(101, "One Hundred And One Dollars")]
+        [TestCase(111, "One Hundred And Eleven Dollars")]
+        [TestCase(999, "Nine Hundred And Ninety Nine Dollars")]
+        public void When_Three_Digits_Then_Show_And(int input, string expected) {
+            var actual = _currencyService.TranslateToEnglish(input);
             actual.Should().Be(expected);
         }
     }
