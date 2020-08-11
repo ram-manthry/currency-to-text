@@ -5,8 +5,12 @@ namespace CurrencyService
     public class CurrencyService
     {
         private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
-        
+
         public string TranslateToEnglish(decimal amount) {
+            if (amount < 0 || amount >= 1000) {
+                throw new ArgumentOutOfRangeException("amount", $"Amount should be between 0 and 1000 : {amount}");
+            }
+
             var text = string.Empty;
 
             var wholeNumberPart = amount.WholeNumberPart();

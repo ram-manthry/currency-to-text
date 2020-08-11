@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using FluentAssertions;
+using System;
 
 namespace CurrencyService.Tests
 {
@@ -61,6 +62,12 @@ namespace CurrencyService.Tests
         public void When_Decimal_Places_Then_Return_Dollars_And_Cents(decimal input, string expected) {
             var actual = _currencyService.TranslateToEnglish(input);
             actual.Should().Be(expected);
+        }
+
+        [TestCase(1000)]
+        public void When_Amount_Not_Between_0_And_1000_Throw_Argument_Out_Of_Range_Exception(decimal input) {
+            Assert.Throws(Is.TypeOf<ArgumentOutOfRangeException>().And.Message.EqualTo($"Amount should be between 0 and 1000 : {input} (Parameter 'amount')"), 
+                () => _currencyService.TranslateToEnglish(input));
         }
     }
 }
