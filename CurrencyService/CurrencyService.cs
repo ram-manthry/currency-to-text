@@ -4,6 +4,8 @@ namespace CurrencyService
 {
     public class CurrencyService
     {
+        private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
+        
         public string TranslateToEnglish(decimal amount) {
             var text = string.Empty;
 
@@ -20,8 +22,6 @@ namespace CurrencyService
             
             return text;
         }
-
-        private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
 
         private string TranslateToEnglish(int amount, string currency) {
             var text = string.Empty;
