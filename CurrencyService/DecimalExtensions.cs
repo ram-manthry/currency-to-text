@@ -6,8 +6,8 @@ public static class DecimalExtensions
             return (int)Math.Truncate(number);
         }
 
-        public static int ReminderDigits(this decimal number, int count)
+        public static int ReminderDigits(this decimal number)
         {
-            return int.Parse((number - Math.Truncate(number)).ToString().Substring(2, count));
+            return int.Parse((number - Math.Truncate(number)).ToString().Substring(2, 2));
         }
     }
