@@ -5,7 +5,11 @@ namespace CurrencyService
     public class CurrencyService
     {
         public string TranslateToEnglish(decimal amount) {
-            return TranslateToEnglish(amount.WholeNumberPart(), "Dollars");
+            var text = string.Empty;
+            var dollars = TranslateToEnglish(amount.WholeNumberPart(), "dollars");
+            var reminderDigits = amount.ReminderDigits();
+            var cents = reminderDigits > 0 ? " " + TranslateToEnglish(reminderDigits, "cents") : string.Empty;
+            return dollars + cents;
         }
 
         private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
@@ -14,7 +18,7 @@ namespace CurrencyService
             var text = string.Empty;
 
             if (amount == 0) {
-                return "Zero " + currency;
+                return "zero " + currency;
             }
 
             var moduloDivider = 1;
@@ -34,7 +38,7 @@ namespace CurrencyService
                 } else if (currentNumber < 100) {
                     text = Lookup.NumberTexts[currentNumber - previousNumber] + Conjuctor(text, " ") + text;
                 } else if (currentNumber < 1000) {
-                    text = Lookup.NumberTexts[(currentNumber - previousNumber) / 100] + " Hundred" + Conjuctor(text, " And ") + text;
+                    text = Lookup.NumberTexts[(currentNumber - previousNumber) / 100] + " hundred" + Conjuctor(text, " and ") + text;
                 }
                 
                 previousNumber = currentNumber;

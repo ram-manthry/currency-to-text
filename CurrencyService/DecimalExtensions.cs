@@ -8,6 +8,10 @@ public static class DecimalExtensions
 
         public static int ReminderDigits(this decimal number)
         {
-            return int.Parse((number - Math.Truncate(number)).ToString().Substring(2, 2));
+            var decimalPart = number - Math.Truncate(number);
+            if (decimalPart == 0) {
+                return 0;
+            }
+            return int.Parse(decimalPart.ToString().Substring(2, 2));
         }
     }
