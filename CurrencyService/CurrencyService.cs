@@ -31,7 +31,7 @@ namespace CurrencyService
             var text = string.Empty;
 
             if (amount == 0) {
-                return "zero " + currency;
+                return $"{Lookup.ZERO} " + currency;
             }
 
             var moduloDivider = 1;
@@ -51,7 +51,7 @@ namespace CurrencyService
                 } else if (currentNumber < 100) {
                     text = Lookup.NumberTexts[currentNumber - previousNumber] + Conjuctor(text, " ") + text;
                 } else if (currentNumber < 1000) {
-                    text = Lookup.NumberTexts[(currentNumber - previousNumber) / 100] + " hundred" + Conjuctor(text, " and ") + text;
+                    text = Lookup.NumberTexts[(currentNumber - previousNumber) / 100] + $" {Lookup.NumberTexts[100]}" + Conjuctor(text, " and ") + text;
                 }
                 
                 previousNumber = currentNumber;

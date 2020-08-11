@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 
 public class Lookup {
+
+    public static string ZERO = "zero";
     public static Dictionary<int, string> NumberTexts = new Dictionary<int, string>() {
         {0, ""},
         {1, "one"},
