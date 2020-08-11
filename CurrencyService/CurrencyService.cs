@@ -5,11 +5,11 @@ namespace CurrencyService
     public class CurrencyService
     {
         public string TranslateToEnglish(decimal amount) {
-            var wholeNumberPart = (int)Math.Truncate(amount);
-            return TranslateToEnglish(wholeNumberPart, "Dollars");
+            return TranslateToEnglish(amount.WholeNumberPart(), "Dollars");
         }
 
         private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
+
         private string TranslateToEnglish(int amount, string currency) {
             var text = string.Empty;
 
