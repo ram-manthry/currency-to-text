@@ -38,6 +38,8 @@ namespace CurrencyService
             var currentNumber = 0;
             var previousNumber = 0;
 
+            var chain = LinkFactory.GetLink();
+
             do {
                 moduloDivider *= 10;
                 currentNumber = amount % moduloDivider;
@@ -46,15 +48,9 @@ namespace CurrencyService
                     continue;
                 }
 
-                if (currentNumber <= 20) {
-                    text = Lookup.NumberTexts[currentNumber];
-                } else if (currentNumber < 100) {
-                    text = Lookup.NumberTexts[currentNumber - previousNumber] + Conjuctor(text, " ") + text;
-                } else if (currentNumber < 1000) {
-                    text = Lookup.NumberTexts[(currentNumber - previousNumber) / 100] + $" {Lookup.NumberTexts[100]}" + Conjuctor(text, " and ") + text;
-                }
-                
+                text = chain.Execute(currentNumber, previousNumber, text);
                 previousNumber = currentNumber;
+                
             } while(moduloDivider <= amount);
 
             return text + " " + currency;
