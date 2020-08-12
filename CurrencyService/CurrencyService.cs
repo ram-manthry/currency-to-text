@@ -4,7 +4,7 @@ namespace CurrencyService
 {
     public class CurrencyService
     {
-        private string Conjuctor(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
+        private string Conjunction(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
 
         public string TranslateToEnglish(decimal amount) {
             if (amount < 0 || amount >= 1000) {
@@ -21,7 +21,7 @@ namespace CurrencyService
             }
         
             if (fractionalPart > 0) {
-                text += Conjuctor(text, " and ") + TranslateToEnglish(fractionalPart, "cents");
+                text += Conjunction(text, " and ") + TranslateToEnglish(fractionalPart, "cents");
             }
             
             return text;
