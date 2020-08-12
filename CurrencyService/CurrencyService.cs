@@ -4,6 +4,11 @@ namespace CurrencyService
 {
     public class CurrencyService
     {
+        private Link _chain;
+        public CurrencyService() {
+            _chain = LinkFactory.GetLink();
+        }
+
         private string Conjunction(string text, string filler) => string.IsNullOrEmpty(text) ? string.Empty : filler;
 
         public string TranslateToEnglish(decimal amount) {
@@ -38,8 +43,6 @@ namespace CurrencyService
             var currentNumber = 0;
             var previousNumber = 0;
 
-            var chain = LinkFactory.GetLink();
-
             do {
                 moduloDivider *= 10;
                 currentNumber = amount % moduloDivider;
@@ -48,7 +51,7 @@ namespace CurrencyService
                     continue;
                 }
 
-                text = chain.Execute(currentNumber, previousNumber, text);
+                text = _chain.Execute(currentNumber, previousNumber, text);
                 previousNumber = currentNumber;
                 
             } while(moduloDivider <= amount);
